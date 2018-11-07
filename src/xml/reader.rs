@@ -67,7 +67,7 @@ impl<R: Read> EventReader<R> {
                         "false" => return Some(Ok(PlistEvent::BooleanValue(false))),
                         "data" => {
                             return Some(self.read_content(|s| {
-                                let data = base64::decode_config(&s, base64::MIME)
+                                let data = base64::decode_config(&s, base64::STANDARD)
                                     .map_err(|_| Error::InvalidData)?;
                                 Ok(PlistEvent::DataValue(data))
                             }))

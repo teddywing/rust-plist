@@ -169,7 +169,7 @@ impl<W: Write> PlistEventWriter for EventWriter<W> {
                 self.end_element("false")?;
             }
             PlistEvent::DataValue(ref value) => {
-                let base64_data = base64::encode_config(&value, base64::MIME);
+                let base64_data = base64::encode_config(&value, base64::STANDARD);
                 self.write_element_and_value("data", &base64_data)?;
             }
             PlistEvent::DateValue(ref value) => {
